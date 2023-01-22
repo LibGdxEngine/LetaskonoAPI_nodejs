@@ -26,7 +26,7 @@ exports.createUser = async (req, res) => {
  
 exports.getUserById = async (req, res) => {
   try {
-    const user = await userService.getUserById(req.params.id);
+    const user = await userService.getUserByPhone(req.params.id);
     res.json({ data: user, status: "success" });
   } catch (err) {
     res.status(500).json({ error: err.message });
