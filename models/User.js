@@ -2,6 +2,10 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
  
 const userSchema = new Schema({
+  id: {
+    type: String,
+    index: true
+  },
   name: {
     type: String,
 
@@ -37,7 +41,7 @@ const userSchema = new Schema({
     type: Boolean,
     default: false,
   },
-  questions: [{
+  questionsList: [{
     type: Map,
     of: String,
     default: {}
