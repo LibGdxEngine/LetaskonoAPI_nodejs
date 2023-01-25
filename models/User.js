@@ -9,17 +9,21 @@ const userSchema = new Schema({
   },
   name: {
     type: String,
-
   },
+
   acceptance: acceptanceSchema,
+
+  recievedAcceptances: [{type: String}],
+
   gender: {
     type: String,
 
   },
+
   password: {
     type: String,
-
   },
+  
   phone: {
     type: String,
     index: true,
@@ -48,17 +52,11 @@ const userSchema = new Schema({
     of: String,
     default: {}
   }],
-
   createdAt: {
     type: Date,
     default: Date.now,
   },
 
-});
-
-userSchema.pre('save', function(next) {
-  this.lastAcceptanceDate = Date.now();
-  next();
 });
 
 module.exports = mongoose.model("User", userSchema);
