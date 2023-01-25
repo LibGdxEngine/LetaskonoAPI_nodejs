@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-const acceptanceSchema = new Schema({ value: String }, { timestamps: true });
+const acceptanceSchema = new Schema({ acceptedWith: {type: String, default: ""} }, { timestamps: true });
 
 const userSchema = new Schema({
   id: {

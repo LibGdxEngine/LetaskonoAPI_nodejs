@@ -15,6 +15,10 @@ exports.getUserById = async (id) => {
 exports.getUserByPhone = async (phone) => {
   return await UserModel.findOne({ phone: phone });
 };
+
+exports.getUserById = async (id) => {
+  return await UserModel.findOne({ id: id });
+};
  
 exports.updateUser = async (phone, user) => {
   return await UserModel.findOneAndUpdate({phone: phone}, user);
