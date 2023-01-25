@@ -60,8 +60,8 @@ exports.timeSpan = async (req, res) =>{
     const user = await userService.getUserByPhone(phone);
     
     var d1 = user.acceptance.updatedAt;  
-    var d2 = new Date.now();       
-    var diff = d2.getTime() - d1.getTime();   
+
+    var diff = new Date(d1) - Date.now();
         
     var daydiff = diff / (1000 * 60 * 60 * 24);   
     res.json({timeSpan: daydiff, status: "success"}) ;
