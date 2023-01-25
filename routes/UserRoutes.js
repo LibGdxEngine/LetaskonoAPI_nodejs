@@ -12,6 +12,6 @@ const router = express.Router();
  
 router.route("/").get(getAllUsers).post(createUser);
 router.route("/:id").get(getUserById).put(updateUser).delete(deleteUser);
-router.route("/time/:id").post(timeSpan);
+router.route("/time").post(timeSpan);
  
 module.exports = router;
