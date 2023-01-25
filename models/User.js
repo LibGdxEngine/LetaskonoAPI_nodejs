@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
- 
+const acceptanceSchema = new Schema({ value: String }, { timestamps: true });
+
 const userSchema = new Schema({
   id: {
     type: String,
@@ -10,6 +11,7 @@ const userSchema = new Schema({
     type: String,
 
   },
+  acceptance: acceptanceSchema,
   gender: {
     type: String,
 
@@ -53,5 +55,10 @@ const userSchema = new Schema({
   },
 
 });
- 
+
+userSchema.pre('save', function(next) {
+  this.lastAcceptanceDate = Date.now();
+  next();
+});
+
 module.exports = mongoose.model("User", userSchema);
