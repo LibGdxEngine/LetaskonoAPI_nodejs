@@ -13,7 +13,7 @@ const userSchema = new Schema({
 
   acceptance: acceptanceSchema,
 
-  recievedAcceptances: [{type: String}],
+  receivedAcceptances: [{type: String}],
 
   gender: {
     type: String,
@@ -23,7 +23,7 @@ const userSchema = new Schema({
   password: {
     type: String,
   },
-  
+
   phone: {
     type: String,
     index: true,
