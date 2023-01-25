@@ -53,3 +53,19 @@ exports.deleteUser = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
+
+exports.timeSpan = async (req, res) =>{
+  try{
+    const phone = req.body['phone'];
+    const user = await userService.getUserByPhone(phone);
+    
+    var d1 = user.acceptance.updatedAt;  
+    var d2 = new Date.now();       
+    var diff = d2.getTime() - d1.getTime();   
+        
+    var daydiff = diff / (1000 * 60 * 60 * 24);   
+    res.json({timeSpan: daydiff, status: "success"}) ;
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
