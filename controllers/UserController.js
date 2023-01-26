@@ -61,7 +61,7 @@ exports.timeSpan = async (req, res) =>{
     
     var d1 = user.acceptance.updatedAt;  
 
-    var diff = new Date(d1) - Date.now();
+    var diff = Date.now() - new Date(d1) ;
         
     var daydiff = diff / (1000 * 60 * 60 * 24);   
     res.json({timeSpan: daydiff, status: "success"}) ;
