@@ -57,11 +57,11 @@ exports.deleteUser = async (req, res) => {
 exports.getListOfUsers = async (req, res) =>{
   try{
     const usersList = [];
-    const usersIdsList = req.body['usersIdsList'];
+    const userPhonesList = req.body['userPhonesList'];
 
-    for (let i = 0; i < usersIdsList.length; i++) {
-      let userId = usersIdsList[i]
-      const user = await userService.getUserById(userId);
+    for (let i = 0; i < userPhonesList.length; i++) {
+      let userId = userPhonesList[i]
+      const user = await userService.getUserByPhone(userId);
       if(user != null){
         usersList.push(user);
       }
