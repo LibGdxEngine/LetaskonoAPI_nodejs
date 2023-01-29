@@ -6,11 +6,13 @@ const {
   updateUser,
   deleteUser,
   timeSpan,
+  getListOfUsers
 } = require("../controllers/UserController");
  
 const router = express.Router();
  
-router.route("/").get(getAllUsers).post(createUser);
+router.route("/").get(getAllUsers).post(createUser)
+router.route("/usersList").post(getListOfUsers);
 router.route("/:id").get(getUserById).put(updateUser).delete(deleteUser);
 router.route("/time").post(timeSpan);
  

@@ -54,6 +54,25 @@ exports.deleteUser = async (req, res) => {
   }
 };
 
+exports.getListOfUsers = async (req, res) =>{
+  try{
+    const usersList = [];
+    const usersIdsList = req.body['usersIdsList'];
+
+    for (let i = 0; i < usersIdsList.length; i++) {
+      let userId = usersIdsList[i]
+      const user = await userService.getUserById(userId);
+      if(user != null){
+        usersList.push(user);
+      }
+    }
+
+    res.json({users: usersList, status: "success"}) ;
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
 exports.timeSpan = async (req, res) =>{
   try{
     const phone = req.body['phone'];
