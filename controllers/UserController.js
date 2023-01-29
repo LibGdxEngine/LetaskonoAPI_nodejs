@@ -67,7 +67,7 @@ exports.getListOfUsers = async (req, res) =>{
       }
     }
 
-    res.json({users: usersList, status: "success"}) ;
+    res.json({data: usersList, status: "success"}) ;
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
