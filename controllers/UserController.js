@@ -62,9 +62,9 @@ exports.getListOfUsers = async (req, res) => {
     for (let i = 0; i < userPhonesList.length; i++) {
       let userId = userPhonesList[i];
 
-      let user = await userService.getUserByPhone(req.params.id);
+      let user = await userService.getUserByPhone(userId);
       if (user == null) {
-        user = await userService.getUserById(req.params.id);
+        user = await userService.getUserById(userId);
       }
       if (user != null) {
         usersList.push(user);
