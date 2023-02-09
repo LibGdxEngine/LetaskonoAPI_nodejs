@@ -6,7 +6,9 @@ exports.getAllUsers = async (req, res) => {
     let skip = req.body.skip ? parseInt(req.body.skip) : 0;
 
     const users = await userService.getAllUsers(limit, skip);
-    res.json({ data: users, size: users.length, status: "success" });
+    const totalUsersCount = await userService.getCountOfAllUsers();
+    console.log(totalUsersCount);
+    res.json({ data: users, size: totalUsersCount, status: "success" });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

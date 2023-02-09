@@ -7,6 +7,11 @@ exports.getAllUsers = async (limit, skip) => {
   .limit(limit)
 };
  
+exports.getCountOfAllUsers = async () => {
+  return await UserModel.count({isBlocked: false})
+};
+ 
+
 exports.createUser = async (user) => {
   return await UserModel.create(user);
 };
