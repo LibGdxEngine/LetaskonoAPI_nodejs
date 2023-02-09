@@ -1,7 +1,13 @@
 const UserModel = require("../models/User");
  
-exports.getAllUsers = async (limit, skip) => {
-  return await UserModel.find()
+exports.getAllUsers = async (limit, skip, gender) => {
+  let query = {}
+  if(gender === "ALL"){
+    
+  }else{
+    query = {gender}
+  }
+  return await UserModel.find(query)
   .sort({createdAt: -1})
   .skip(skip)
   .limit(limit)

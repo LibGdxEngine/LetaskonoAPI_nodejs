@@ -2,10 +2,11 @@ const userService = require("../services/UserService");
 
 exports.getAllUsers = async (req, res) => {
   try {
-    let limit = req.body.limit ? parseInt(req.body.limit) : 10;
+    let limit = req.body.limit ? parseInt(req.body.limit) : 20;
     let skip = req.body.skip ? parseInt(req.body.skip) : 0;
+    let gender = req.body.gender ? req.body.gender : "ALL";
 
-    const users = await userService.getAllUsers(limit, skip);
+    const users = await userService.getAllUsers(limit, skip, gender);
     const totalUsersCount = await userService.getCountOfAllUsers();
     console.log(totalUsersCount);
     res.json({ data: users, size: totalUsersCount, status: "success" });
