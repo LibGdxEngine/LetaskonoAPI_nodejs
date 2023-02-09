@@ -1,7 +1,10 @@
 const UserModel = require("../models/User");
  
-exports.getAllUsers = async () => {
-  return await UserModel.find();
+exports.getAllUsers = async (limit, skip) => {
+  return await UserModel.find()
+  .sort({createdAt: -1})
+  .skip(skip)
+  .limit(limit)
 };
  
 exports.createUser = async (user) => {

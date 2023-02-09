@@ -2,7 +2,10 @@ const userService = require("../services/UserService");
 
 exports.getAllUsers = async (req, res) => {
   try {
-    const users = await userService.getAllUsers();
+    let limit = req.body.limit ? parseInt(req.body.limit) : 10 
+    let skip = req.body.skip ? parseInt(req.body.skip) : 0 
+    
+    const users = await userService.getAllUsers(limit, skip);
     res.json({ data: users, status: "success" });
   } catch (err) {
     res.status(500).json({ error: err.message });
