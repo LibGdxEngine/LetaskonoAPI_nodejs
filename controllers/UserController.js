@@ -5,14 +5,14 @@ exports.getAllUsers = async (req, res) => {
     let limit = req.body.limit ? parseInt(req.body.limit) : 20;
     let skip = req.body.skip ? parseInt(req.body.skip) : 0;
     let gender = req.body.gender ? req.body.gender : "ALL";
+    let generalStatus = req.body.generalStatus ? req.body.generalStatus : "WANT_MARRY";
 
-    const users = await userService.getAllUsers(limit, skip, gender);
+    console.log(generalStatus);
+    const users = await userService.getAllUsers(limit, skip, gender, generalStatus);
 
     const idsList = users.map((user) => user.id);
-    console.log(idsList);
 
-    const totalUsersCount = await userService.getCountOfAllUsers();
-    console.log(totalUsersCount);
+    const totalUsersCount = await userService.getCountOfAllUsers(generalStatus);
     res.json({ data: users, size: totalUsersCount, status: "success" });
   } catch (err) {
     res.status(500).json({ error: err.message });
