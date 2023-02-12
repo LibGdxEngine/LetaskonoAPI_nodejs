@@ -18,5 +18,6 @@ router.route("/usersForAdmin/:id").get(getUsersForAdmin)
 router.route("/usersList").post(getListOfUsers);
 router.route("/:id").get(getUserById).put(updateUser).delete(deleteUser);
 router.route("/time").post(timeSpan);
+
  
 module.exports = router;
