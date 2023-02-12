@@ -7,6 +7,10 @@ exports.getAllUsers = async (req, res) => {
     let gender = req.body.gender ? req.body.gender : "ALL";
 
     const users = await userService.getAllUsers(limit, skip, gender);
+
+    const idsList = users.map((user) => user.id);
+    console.log(idsList);
+
     const totalUsersCount = await userService.getCountOfAllUsers();
     console.log(totalUsersCount);
     res.json({ data: users, size: totalUsersCount, status: "success" });
@@ -94,6 +98,19 @@ exports.timeSpan = async (req, res) => {
 
     var daydiff = diff / (1000 * 60 * 60 * 24);
     res.json({ timeSpan: daydiff, status: "success" });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+exports.getUsersForAdmin = async (req, res) => {
+  try {
+    let user = await userService.getUserByPhone(req.params.id);
+    if (user == null) {
+      user = await userService.getUserById(req.params.id);
+    }
+    otherUser = await userService.getUserById(user.relatedWith);
+    res.json({ data: user, otherUser, status: "success" });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
